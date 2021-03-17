@@ -16,6 +16,26 @@
       margin: 0;
     }
 
+    .ng2-smart-table-default-infinite-scroll {
+      // max-height: 75vh !important;
+      overflow-y: scroll;
+      min-height: 30vh;
+      // width: 100%;
+      // border: 1px solid black;
+    }
+
+    .ng2-smart-table-head-hidden {
+      visibility: collapse;
+    }
+    .ng2-smart-table-head-hidden tr {
+      height: 0px;
+      line-height: 0px;
+    }
+    .ng2-smart-table-head-hidden tr th {
+      height: 0px;
+      line-height: 0px;
+    }
+
     table {
       line-height: 1.5em;
       border-collapse: collapse;

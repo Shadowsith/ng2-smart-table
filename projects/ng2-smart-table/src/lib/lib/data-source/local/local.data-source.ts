@@ -49,8 +49,7 @@ export class LocalDataSource extends DataSource {
   }
 
   remove(element: any): Promise<any> {
-    this.data = this.data.filter(el => isEqual(el, element));
-
+    this.data = this.data.filter(el => !isEqual(el, element));
     return super.remove(element);
   }
 
