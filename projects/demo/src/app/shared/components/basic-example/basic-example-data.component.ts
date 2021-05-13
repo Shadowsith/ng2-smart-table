@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)"></ng2-smart-table>
   `,
 })
 export class BasicExampleDataComponent {
@@ -24,6 +25,10 @@ export class BasicExampleDataComponent {
       },
     },
   };
+
+  public onEdit(event: any) {
+      console.log(event);
+  }
 
   data = [
     {
@@ -93,4 +98,6 @@ export class BasicExampleDataComponent {
       email: 'Rey.Padberg@rosamond.biz',
     },
   ];
+
+  source = new LocalDataSource(this.data);
 }

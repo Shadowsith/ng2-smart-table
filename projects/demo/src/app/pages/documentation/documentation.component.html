@@ -142,10 +142,19 @@
     </tr>
     <tr>
       <td><span class="nested-obj">editor</span>.type</td>
-      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'custom'</span></td>
       <td>'text'</td>
       <td>
         Editor used when new row is added or edited
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor</span>.component</td>
+      <td><span class="highlight">Component</span></td>
+      <td>n/a</td>
+      <td>
+          Editor custom component. Only for editor <span class="highlight">custom</span> type.<br>
+          You can see an <a href="https://github.com/akveo/ng2-smart-table/blob/master/projects/demo/src/app/pages/examples/custom-edit-view/custom-editor.component.ts">example here</a>
       </td>
     </tr>
     <tr>
