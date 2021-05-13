@@ -1,14 +1,20 @@
 import { Component } from "@angular/core";
 
 export interface Ng2SmartTableSettings {
-  actions?: Ng2SmartTableActions,
-  attr?: Ng2SmartTableAttr,
   /** column Attributes are of Type Ng2SmartTableColumn */
   columns: Ng2SmartTableColumnMap,
-  /**
-   * Settings for the table filter 
-   */
-  filter?: Object,
+  /** Settings for the table actions */
+  actions?: Ng2SmartTableActions,
+  /** Table attributes settings */
+  attr?: Ng2SmartTableAttr,
+  /** Settings for the table filter */
+  filter?: Ng2SmartTableFilter,
+  /** Edit action settings */
+  edit?: Ng2SmartTableEditAction,
+  /** Add action settings */
+  add?: Ng2SmartTableAddAction,
+  /** Delete action settings */
+  delete?: Ng2SmartTableDeleteAction,
   /**
    * Set to true to not display the table header (which includes table column titles).
    * @default false

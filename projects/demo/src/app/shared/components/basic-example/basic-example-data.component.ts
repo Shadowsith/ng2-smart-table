@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource, Ng2SmartTableSettings } from 'ng2-smart-table';
 
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="source" (editCancel)="onEditCancel($event)"></ng2-smart-table>
   `,
 })
 export class BasicExampleDataComponent {
 
-  settings = {
+  settings: Ng2SmartTableSettings = {
     columns: {
       id: {
         title: 'ID',
@@ -26,8 +26,8 @@ export class BasicExampleDataComponent {
     },
   };
 
-  public onEdit(event: any) {
-      console.log(event);
+  public onEditCancel($event) {
+    console.log('Event', $event);
   }
 
   data = [
