@@ -170,7 +170,7 @@ export interface Ng2SmartTableColumnEditor {
      * Editor/Filter used when new row is added or edited
      * @default 'text'
      */
-    type?: 'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'custom' | 'number';
+    type?: 'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'custom';
     /**
      * Editor/Filter configuration settings.
      * Mandatory only for editor types checkbox, completer, list
