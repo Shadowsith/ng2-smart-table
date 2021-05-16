@@ -111,7 +111,7 @@ export interface Ng2SmartTableColumn {
   /**
    * Custom component that will be responsible for rendering the cell content while in view mode.
    * Type must be custom in order for this to work.
-   * @example https://github.com/akveo/ng2-smart-table/blob/master/projects/demo/src/app/pages/examples/custom-edit-view/advanced-example-custom-editor.component.ts
+   * @example https://github.com/Shadowsith/ng2-smart-table/blob/master/projects/demo/src/app/pages/examples/custom-edit-view/advanced-example-custom-editor.component.ts
    * @default null
    */
   renderComponent?: Component;
@@ -236,7 +236,7 @@ export interface Ng2SmartTableColumnFilterConfig extends Ng2SmartTableColumnEdit
   /**
    * Only on checkbox type.
    * Defines the text of the button to reset the checkbox selection.
-   * @example https://github.com/akveo/ng2-smart-table/blob/master/projects/demo/src/app/pages/examples/filter/advanced-example-filters.component.ts
+   * @example https://github.com/Shadowsith/ng2-smart-table/blob/master/projects/demo/src/app/pages/examples/filter/advanced-example-filters.component.ts
    */
   resetText?: string;
 }
