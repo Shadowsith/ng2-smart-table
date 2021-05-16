@@ -9,7 +9,7 @@ Due to project priority and resource constraints, this project is currently on l
 
 ### Demo
 
-<a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
+<a target="_blank" href="https://ng2-smart-table.shadowsith.de/">Live Demo</a>
 
 ![alt tag](projects/demo/src/assets/demo.gif)
 
