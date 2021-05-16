@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource, Ng2SmartTableSettings } from 'ng2-smart-table';
 
 @Component({
   selector: 'basic-example-source',
@@ -11,7 +11,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class BasicExampleSourceComponent {
 
-  settings = {
+  settings: Ng2SmartTableSettings = {
     columns: {
       id: {
         title: 'ID',

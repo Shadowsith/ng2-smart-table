@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class BasicExampleSourceComponent {
 
-  settings = {
+  settings: Ng2SmartTableSettings = {
     columns: {
       id: {
         title: 'ID',
