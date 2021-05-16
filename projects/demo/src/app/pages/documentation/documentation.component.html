@@ -106,10 +106,11 @@
     </tr>
     <tr>
       <td>type</td>
-      <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span>|<span class="highlight">'custom'</span></td>
+      <td><span class="highlight">'text'</span>|<span class="highlight">'string'</span>|<span class="highlight">'html'</span>|<span class="highlight">'custom'</span></td>
       <td>'text'</td>
       <td>
         If type is <span class="highlight">text</span> then cell value will be inserted as text.<br>
+        If type is <span class="highlight">string</span> then cell value will be inserted as text.<br>
         If type is <span class="highlight">html</span> then cell value will be inserted as html.<br>
         If type is <span class="highlight">custom</span> the <code>renderComponent</code> property must be defined.
       </td>
@@ -191,6 +192,15 @@
         Only on <span class="highlight">list</span> type. Example format:<br>
         <code>{{ '{' }} value: 'Element Value', title: 'Element Title' {{ '}' }}</code><br>
         Html is supported if column type is <span class="highlight">'html'</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.selectText</td>
+      <td><span class="highlight">string</span></td>
+      <td>false</td>
+      <td>
+        Only on <span class="highlight">list</span> type.<br>
+        Defines the empty list placeholder if nothing is selected.
       </td>
     </tr>
     <tr>

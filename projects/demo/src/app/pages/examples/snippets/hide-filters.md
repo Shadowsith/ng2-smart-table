@@ -1,4 +1,4 @@
-settings = {
+settings: Ng2SmartTableSettings = {
   columns: {
     id: {
       title: 'ID',
