@@ -22,6 +22,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   @Output() rowSelect = new EventEmitter<any>();
   @Output() rowDeselect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
+  @Output() pageChange = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() editCancel = new EventEmitter<any>();
@@ -235,6 +236,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   changePage($event: any) {
     this.resetAllSelector();
+    this.emitPageChange($event);
   }
 
   sort($event: any) {
@@ -307,4 +309,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
       });
   }
 
+  private emitPageChange($event: any) {
+    this.pageChange.emit($event);
+  }
 }
