@@ -17,7 +17,7 @@ import { Ng2SmartTableSettings } from './lib/data-settings/data-settings';
 export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   @Input() source: any;
-  @Input() settings: Ng2SmartTableSettings;
+  @Input() settings: Ng2SmartTableSettings | Object;
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() rowDeselect = new EventEmitter<any>();
