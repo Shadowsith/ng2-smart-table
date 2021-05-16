@@ -1,8 +1,8 @@
 {
   "name": "ng2-smart-table",
-  "version": "1.7.2",
-  "description": "Angular Smart Table",
-  "author": "akveo",
+  "version": "1.7.3",
+  "description": "Angular Smart Table (custom build)",
+  "author": "akveo|Shadowsith",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.10",
