@@ -46,6 +46,7 @@ export interface Ng2SmartTableSettings {
    *
    */
   rowClassFunction?: Function;
+  selectMode?: 'multi' | 'single';
 }
 
 export interface Ng2SmartTableColumn {

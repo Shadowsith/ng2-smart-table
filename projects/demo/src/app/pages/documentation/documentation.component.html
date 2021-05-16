@@ -594,6 +594,15 @@
         Handle css class for each row in the table
       </td>
     </tr>
+    <tr>
+      <td>selectMode</td>
+      <td><span class="highlight">'multi' | 'single'</span></td>
+      <td>'single'</td>
+      <td>
+        Enables mulit selection with checkboxes on the left side.
+        Use <span class="highlight">event.selected</span> attribute of <span class="highlight">(userRowSelect)</span> to get selected rows.
+      </td>
+    </tr>
   </table>
 
   <h3><a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Outputs/Events</h3>
@@ -623,6 +632,7 @@
         event: <span class="highlight">Object</span>, consist of:
         <ul>
           <li>data: <span class="highlight">Object</span> - selected row data object</li>
+          <li>selected: <span class="highlight">Array</span> - selected rows data</li>
           <li>source: <span class="highlight">DataSource</span> - table data source</li>
         </ul>
       </td>
