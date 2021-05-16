@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Ng2SmartTableSettings } from 'ng2-smart-table';
 
 @Component({
   selector: 'advanced-example-types',
@@ -104,7 +105,7 @@ export class AdvancedExamplesTypesComponent {
     },
   ];
 
-  settings = {
+  settings: Ng2SmartTableSettings = {
     columns: {
       id: {
         title: 'ID',

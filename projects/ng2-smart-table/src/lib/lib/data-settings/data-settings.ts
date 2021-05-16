@@ -1,5 +1,3 @@
-import { Component } from "@angular/core";
-
 export interface Ng2SmartTableSettings {
   /** column Attributes are of Type Ng2SmartTableColumn */
   columns: Ng2SmartTableColumnMap,
@@ -61,7 +59,7 @@ export interface Ng2SmartTableColumn {
    * If type is custom the renderComponent property must be defined. 
    * @default 'text'
    */
-  type?: 'text' | 'html' | 'custom';
+  type?: 'text' | 'html' | 'custom' | 'string';
   /**
    * Column class
    * @default ''
@@ -114,7 +112,7 @@ export interface Ng2SmartTableColumn {
    * @example https://github.com/Shadowsith/ng2-smart-table/blob/master/projects/demo/src/app/pages/examples/custom-edit-view/advanced-example-custom-editor.component.ts
    * @default null
    */
-  renderComponent?: Component;
+  renderComponent?: Object;
   /**
    * Function run against the values to sort the table 
    * @example (direction: any, a: string, b: string): number => {
@@ -178,7 +176,7 @@ export interface Ng2SmartTableColumnEditor {
    * Editor/Filter used when new row is added or edited
    * @default 'text'
    */
-  type?: 'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'custom';
+  type?: 'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'custom' | 'number';
   /**
    * Editor/Filter configuration settings. 
    * Mandatory only for editor types checkbox, completer, list
@@ -188,7 +186,7 @@ export interface Ng2SmartTableColumnEditor {
    * Editor/Filter custom component:
    * Mandatory only for editor type custom
    */
-  component?: Component;
+  component?: Object;
 }
 
 export interface Ng2SmartTableColumnFilter extends Ng2SmartTableColumnEditor {
@@ -215,11 +213,15 @@ export interface Ng2SmartTableColumnEditorConfig {
 
   false?: string;
   /**
-   * Only on list type. Example format:
+   * Only on list type. 
    * HTML is supported if column type is 'html'
    * @example { value: 'Element Value', title: 'Element Title' }
    */
   list?: Array<Ng2SmartTableColumnEditorList>;
+  /**
+   * Only on list type. Sets empty select placeholder
+   */
+  selectText?: string;
   /**
    * Only on list type. Enables multiple selection
    * @default false
@@ -384,7 +386,7 @@ export interface Ng2SmartTableDeleteAction {
    * If enabled data will be deleted only if confirm.resolve() called.
    * @default false
    */
-  confirmDelete?: string;
+  confirmDelete?: boolean;
 }
 
 export interface Ng2SmartTableEditAction {
