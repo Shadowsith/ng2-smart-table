@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Ng2SmartTableSettings } from 'ng2-smart-table';
 
 @Component({
   selector: 'basic-example',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class BasicExampleComponent {
 
-  settings = {
+  settings: Ng2SmartTableSettings = {
     columns: {
       id: {
         title: 'ID',

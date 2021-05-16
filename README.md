@@ -55,7 +55,7 @@ Now, we need to configure the table and add it into the template. The only <stro
 Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns [Settings documentation](https://ng2-smart-table.shadowsith.de/#/documentation):
     
 ```
-settings = {
+settings: Ng2SmartTableSettings = {
   columns: {
     id: {
       title: 'ID'
