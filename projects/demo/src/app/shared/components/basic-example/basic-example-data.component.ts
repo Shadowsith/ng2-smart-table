@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { LocalDataSource, Ng2SmartTableSettings } from 'ng2-smart-table';
+import { Ng2SmartTableSettings } from 'ng2-smart-table';
 
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="source" (editCancel)="onEditCancel($event)"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
   `,
 })
 export class BasicExampleDataComponent {
@@ -25,10 +25,6 @@ export class BasicExampleDataComponent {
       },
     },
   };
-
-  public onEditCancel($event) {
-    console.log('Event', $event);
-  }
 
   data = [
     {
@@ -98,6 +94,4 @@ export class BasicExampleDataComponent {
       email: 'Rey.Padberg@rosamond.biz',
     },
   ];
-
-  source = new LocalDataSource(this.data);
 }

@@ -662,6 +662,20 @@
       </td>
     </tr>
     <tr>
+      <td>(createCancel)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>cancelData: <span class="highlight">Object</span> - canceled data which was entered in the new row</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a cancel button clicked in add mode. 
+        Allows you to access data which the user has canceled.
+      </td>
+    </tr>
+    <tr>
       <td>(edit)</td>
       <td>
         event: <span class="highlight">Object</span>, consist of:
@@ -688,6 +702,21 @@
       <td>
         Triggered once a Save button clicked. Triggered only if table <strong>confirmSave = true and mode = inline</strong>.
         Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+    <tr>
+      <td>(editCancel)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>cancelData: <span class="highlight">Object</span> - canceled data which was entered in the edited row</li>
+          <li>data: <span class="highlight">Object</span> - current data of the row</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a cancel button clicked in edit mode. 
+        Allows you to access data which the user has canceled.
       </td>
     </tr>
     <tr>

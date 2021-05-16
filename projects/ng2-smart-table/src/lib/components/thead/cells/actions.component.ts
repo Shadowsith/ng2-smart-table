@@ -10,7 +10,7 @@ import { Grid } from '../../../lib/grid';
         (click)="$event.preventDefault();create.emit($event)"></a>
     <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel"
         [innerHTML]="cancelButtonContent"
-        (click)="$event.preventDefault();grid.createFormShown = false;createCancel.emit($event)"></a>
+        (click)="onCancel($event)"></a>
   `,
 })
 export class ActionsComponent implements OnChanges {
@@ -21,6 +21,24 @@ export class ActionsComponent implements OnChanges {
 
   createButtonContent: string;
   cancelButtonContent: string;
+
+  onCancel(event: any) {
+    event.preventDefault();
+    this.grid.createFormShown = false;
+    const ev = {
+        cancelData: this.getCancelData(),
+        source: this.grid.source,
+    };
+    this.createCancel.emit(ev);
+  }
+
+  private getCancelData(): Object {
+      const row = {};
+      for(const cell of this.grid.dataSet.newRow.cells) {
+          row[cell.getId()] = cell.newValue;
+      }
+      return row;
+  }
 
   ngOnChanges() {
     this.createButtonContent = this.grid.getSetting('add.createButtonContent');
