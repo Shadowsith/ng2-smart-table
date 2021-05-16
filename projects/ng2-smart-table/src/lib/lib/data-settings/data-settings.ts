@@ -220,6 +220,11 @@ export interface Ng2SmartTableColumnEditorConfig {
    */
   list?: Array<Ng2SmartTableColumnEditorList>;
   /**
+   * Only on list type. Enables multiple selection
+   * @default false
+   */
+  multiple?: boolean;
+  /**
    * Only on completer type. Example format: 
    * Completer configuration settings 
    */
