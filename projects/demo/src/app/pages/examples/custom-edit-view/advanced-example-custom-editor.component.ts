@@ -23,19 +23,19 @@ export class AdvancedExamplesCustomEditorComponent {
       id: 2,
       name: 'Ervin Howell',
       username: 'Antonette',
-      link: '<a href="https://github.com/akveo/ng2-admin">Ng2 Admin</a>',
+      link: '<a href="https://github.com/Shadowsith/ng2-admin">Ng2 Admin</a>',
     },
     {
       id: 3,
       name: 'Clementine Bauch',
       username: 'Samantha',
-      link: '<a href="https://github.com/akveo/ng2-smart-table">Ng2 smart table</a>',
+      link: '<a href="https://github.com/Shadowsith/ng2-smart-table">Ng2 smart table</a>',
     },
     {
       id: 4,
       name: 'Patricia Lebsack',
       username: 'Karianne',
-      link: '<a href="https://github.com/akveo/blur-admin">Blur Admin</a>',
+      link: '<a href="https://github.com/Shadowsith/blur-admin">Blur Admin</a>',
     },
   ];
 
