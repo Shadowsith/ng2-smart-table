@@ -71,6 +71,12 @@ export interface Ng2SmartTableColumn {
    * @example: '20px', '20%'
    */
   width?: string;
+
+  /**
+   * Default value on new columns
+   * @default ''
+   */
+  defaultValue?: any;
   /**
    * Whether to hide this column or not
    * @default false
