@@ -69,6 +69,11 @@ export interface Ng2SmartTableColumn {
      */
     width?: string;
     /**
+     * Default value on new columns
+     * @default ''
+     */
+    defaultValue?: any;
+    /**
      * Whether to hide this column or not
      * @default false
      */
