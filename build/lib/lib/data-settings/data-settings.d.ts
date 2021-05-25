@@ -419,3 +419,10 @@ export interface Ng2SmartTablePager {
      */
     perPage?: number;
 }
+export interface Ng2SmartTableUserRowSelectEvent {
+    data: any;
+    isSelected: boolean;
+    isInEditing: boolean;
+    source: any;
+    selected: any[];
+}

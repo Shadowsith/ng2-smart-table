@@ -1258,6 +1258,7 @@
         TbodyEditDeleteComponent.prototype.onEdit = function (event) {
             event.preventDefault();
             event.stopPropagation();
+            this.row.isInEditing = true;
             this.editRowSelect.emit(this.row);
             if (this.grid.getSetting('mode') === 'external') {
                 this.edit.emit({
@@ -3016,6 +3017,7 @@
             this.userRowSelect.emit({
                 data: row ? row.getData() : null,
                 isSelected: row ? row.getIsSelected() : null,
+                isInEditing: row ? row.isInEditing : null,
                 source: this.source,
                 selected: selectedRows && selectedRows.length ? selectedRows.map(function (r) { return r.getData(); }) : [],
             });
