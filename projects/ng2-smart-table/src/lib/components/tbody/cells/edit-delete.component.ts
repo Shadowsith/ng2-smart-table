@@ -34,6 +34,7 @@ export class TbodyEditDeleteComponent implements OnChanges {
   onEdit(event: any) {
     event.preventDefault();
     event.stopPropagation();
+    this.row.isInEditing = true;
 
     this.editRowSelect.emit(this.row);
 

@@ -2,7 +2,6 @@ import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 
 export abstract class DataSource {
-
   protected onChangedSource = new Subject<any>();
   protected onAddedSource = new Subject<any>();
   protected onUpdatedSource = new Subject<any>();
