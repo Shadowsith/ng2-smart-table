@@ -7,7 +7,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend, getPageForRowIndex } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
-import { Ng2SmartTableSettings } from './lib/data-settings/data-settings';
+import { Ng2SmartTableSettings, Ng2SmartTableUserRowSelectEvent } from './lib/data-settings/data-settings';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -257,9 +257,10 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     this.userRowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
+      isInEditing: row ? row.isInEditing : null,
       source: this.source,
       selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
-    });
+    } as Ng2SmartTableUserRowSelectEvent);
   }
 
   private emitSelectRow(row: Row) {
