@@ -1,5 +1,6 @@
 import { Row } from './row';
 import { Column } from './column';
+import { isEqual } from 'lodash';
 
 export class DataSet {
 
@@ -40,7 +41,7 @@ export class DataSet {
   }
 
   findRowByData(data: any): Row {
-    return this.rows.find((row: Row) => row.getData() === data);
+    return this.rows.find((row: Row) => isEqual(row.getData(), data));
   }
 
   deselectAll() {

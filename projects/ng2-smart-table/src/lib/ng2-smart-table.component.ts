@@ -1,4 +1,14 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  SimpleChange,
+  EventEmitter,
+  OnChanges,
+  OnDestroy,
+  AfterViewInit,
+  HostListener
+} from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -14,7 +24,7 @@ import { Ng2SmartTableSettings, Ng2SmartTableUserRowSelectEvent } from './lib/da
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
+export class Ng2SmartTableComponent implements OnChanges, OnDestroy, AfterViewInit {
 
   @Input() source: any;
   @Input() settings: Ng2SmartTableSettings | Object;
@@ -95,6 +105,11 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
       page: 1,
       perPage: 10,
     },
+    infiniteScroll: {
+      display: false,
+      itemSize: 10,
+      class: 'ng2-smart-table-default-infinite-scroll',
+    },
     rowClassFunction: () => '',
   };
 
@@ -103,6 +118,65 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   private onSelectRowSubscription: Subscription;
   private onDeselectRowSubscription: Subscription;
   private destroyed$: Subject<void> = new Subject<void>();
+
+  ngAfterViewInit() {
+    if (this.grid.getSetting('infiniteScroll.display')) {
+      this.resizeMultiHeads();
+    }
+  }
+
+  resizeMultiHeads() {
+    setTimeout( (() => {
+      let els = document.getElementsByClassName('ng2-smart-actions');
+      /* Let's divide the element list by 2, the  */
+      [].forEach.call(els, ( (el) => {
+        /* Search for the same element inside the same array */
+        const currentClassName = el.className;
+        let elementWidth = el.offsetWidth;
+        [].forEach.call(els, ( (otherElement) => {
+          if (otherElement.className === el.className) {
+            elementWidth = otherElement.offsetWidth;
+          }
+        }));
+        el.width = elementWidth;
+      }).bind(this));
+
+      els = document.getElementsByClassName('ng2-smart-th');
+      [].forEach.call(els, ( (el) => {
+        /* Search for the same element inside the same array */
+        const currentClassName = el.className;
+        let elementWidth = el.offsetWidth;
+        [].forEach.call(els, ( (otherElement) => {
+          if (otherElement.className === el.className) {
+            elementWidth = otherElement.offsetWidth;
+          }
+        }));
+        el.width = elementWidth;
+      }).bind(this));
+
+    }), 10);
+  }
+
+  resetColumnSize() {
+    let els = document.getElementsByClassName('ng2-smart-actions');
+    [].forEach.call(els, ( (el) => {
+      el.width = '';
+    }).bind(this));
+
+    els = document.getElementsByClassName('ng2-smart-th');
+    [].forEach.call(els, ( (el) => {
+      el.width = '';
+    }).bind(this));
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (this.grid.getSetting('infiniteScroll.display')) {
+
+      this.resetColumnSize();
+      this.resizeMultiHeads();
+    }
+  }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {

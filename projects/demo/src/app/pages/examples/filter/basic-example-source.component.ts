@@ -30,6 +30,13 @@ export class BasicExampleSourceComponent {
         filter: false,
       },
     },
+    pager: {
+        display: false,
+    },
+    infiniteScroll: {
+        display: true,
+        itemSize: 5,
+    }
   };
 
   data = [

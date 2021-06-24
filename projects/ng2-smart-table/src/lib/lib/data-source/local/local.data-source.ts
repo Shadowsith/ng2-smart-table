@@ -3,10 +3,11 @@ import { LocalFilter } from './local.filter';
 import { LocalPager } from './local.pager';
 import { DataSource } from '../data-source';
 import { deepExtend } from '../../helpers';
+import { isEqual } from 'lodash';
 
 export class LocalDataSource extends DataSource {
 
-  protected data: Array<any> = [];
+  public data: Array<any> = [];
   protected filteredAndSorted: Array<any> = [];
   protected sortConf: Array<any> = [];
   protected filterConf: any = {
@@ -48,8 +49,7 @@ export class LocalDataSource extends DataSource {
   }
 
   remove(element: any): Promise<any> {
-    this.data = this.data.filter(el => el !== element);
-
+    this.data = this.data.filter(el => !isEqual(el, element));
     return super.remove(element);
   }
 
@@ -63,7 +63,7 @@ export class LocalDataSource extends DataSource {
   }
 
   find(element: any): Promise<any> {
-    const found = this.data.find(el => el === element);
+    const found = this.data.find(el => isEqual(el, element));
     if (found) {
       return Promise.resolve(found);
     }
