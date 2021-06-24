@@ -1,9 +1,9 @@
-import { SimpleChange, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { SimpleChange, EventEmitter, OnChanges, OnDestroy, AfterViewInit } from '@angular/core';
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { Ng2SmartTableSettings } from './lib/data-settings/data-settings';
-export declare class Ng2SmartTableComponent implements OnChanges, OnDestroy {
+export declare class Ng2SmartTableComponent implements OnChanges, OnDestroy, AfterViewInit {
     source: any;
     settings: Ng2SmartTableSettings | Object;
     rowSelect: EventEmitter<any>;
@@ -33,6 +33,10 @@ export declare class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     private onSelectRowSubscription;
     private onDeselectRowSubscription;
     private destroyed$;
+    ngAfterViewInit(): void;
+    resizeMultiHeads(): void;
+    resetColumnSize(): void;
+    onResize(event: any): void;
     ngOnChanges(changes: {
         [propertyName: string]: SimpleChange;
     }): void;

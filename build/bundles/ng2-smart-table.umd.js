@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ng2-completer'), require('rxjs/operators'), require('rxjs'), require('lodash'), require('@angular/common/http')) :
-    typeof define === 'function' && define.amd ? define('ng2-smart-table', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'ng2-completer', 'rxjs/operators', 'rxjs', 'lodash', '@angular/common/http'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['ng2-smart-table'] = {}, global.ng.core, global.ng.common, global.ng.forms, global.ng2Completer, global.rxjs.operators, global.rxjs, global.lodash, global.ng.common.http));
-}(this, (function (exports, core, common, forms, ng2Completer, operators, rxjs, lodash, http) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ng2-completer'), require('rxjs/operators'), require('rxjs'), require('@angular/cdk/scrolling'), require('lodash'), require('@angular/common/http')) :
+    typeof define === 'function' && define.amd ? define('ng2-smart-table', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'ng2-completer', 'rxjs/operators', 'rxjs', '@angular/cdk/scrolling', 'lodash', '@angular/common/http'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['ng2-smart-table'] = {}, global.ng.core, global.ng.common, global.ng.forms, global.ng2Completer, global.rxjs.operators, global.rxjs, global.ng.cdk.scrolling, global.lodash, global.ng.common.http));
+}(this, (function (exports, core, common, forms, ng2Completer, operators, rxjs, scrolling, lodash, http) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -1170,7 +1170,7 @@
     Ng2SmartTableTbodyComponent.decorators = [
         { type: core.Component, args: [{
                     selector: '[ng2-st-tbody]',
-                    template: "<tr *ngFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\" class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\">\n  <td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\" (click)=\"multipleSelectRow.emit(row)\">\n    <input type=\"checkbox\" class=\"form-check-input\" [ngModel]=\"row.isSelected\">\n  </td>\n  <td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\">\n    <ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-custom>\n\n    <ng2-st-tbody-edit-delete [grid]=\"grid\"\n                              [deleteConfirm]=\"deleteConfirm\"\n                              [editConfirm]=\"editConfirm\"\n                              (edit)=\"edit.emit(row)\"\n                              (delete)=\"delete.emit(row)\"\n                              (editRowSelect)=\"editRowSelect.emit($event)\"\n                              [row]=\"row\"\n                              [source]=\"source\">\n    </ng2-st-tbody-edit-delete>\n  </td>\n   <td *ngIf=\"row.isInEditing && showActionColumnLeft\"  class=\"ng2-smart-actions\">\n    <ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\" (cancel)=\"cancel.emit($event)\"></ng2-st-tbody-create-cancel>\n  </td>\n  <td *ngFor=\"let cell of getVisibleCells(row.cells)\">\n    <ng2-smart-table-cell [cell]=\"cell\"\n                          [grid]=\"grid\"\n                          [row]=\"row\"\n                          [isNew]=\"false\"\n                          [mode]=\"mode\"\n                          [editConfirm]=\"editConfirm\"\n                          [inputClass]=\"editInputClass\"\n                          [isInEditing]=\"row.isInEditing\">\n    </ng2-smart-table-cell>\n  </td>\n\n  <td *ngIf=\"row.isInEditing && showActionColumnRight\"  class=\"ng2-smart-actions\">\n    <ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel>\n  </td>\n\n  <td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\">\n    <ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\"></ng2-st-tbody-custom>\n\n    <ng2-st-tbody-edit-delete [grid]=\"grid\"\n                              [deleteConfirm]=\"deleteConfirm\"\n                              [editConfirm]=\"editConfirm\"\n                              [row]=\"row\"\n                              [source]=\"source\"\n                              (edit)=\"edit.emit(row)\"\n                              (delete)=\"delete.emit(row)\"\n                              (editRowSelect)=\"editRowSelect.emit($event)\">\n    </ng2-st-tbody-edit-delete>\n  </td>\n</tr>\n\n<tr *ngIf=\"grid.getRows().length == 0\">\n  <td [attr.colspan]=\"tableColumnsCount\">\n    {{ noDataMessage }}\n  </td>\n</tr>\n",
+                    template: "<ng-container *ngIf=\"grid.getSetting('infiniteScroll.display')\">\n  <tr *cdkVirtualFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\"\n    class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\">\n    <td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\"\n      (click)=\"multipleSelectRow.emit(row)\">\n      <input type=\"checkbox\" class=\"form-control\" [ngModel]=\"row.isSelected\">\n    </td>\n    <td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\">\n      </ng2-st-tbody-custom>\n\n      <ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\"\n        (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (editRowSelect)=\"editRowSelect.emit($event)\" [row]=\"row\"\n        [source]=\"source\">\n      </ng2-st-tbody-edit-delete>\n    </td>\n    <td *ngIf=\"row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel>\n    </td>\n    <td *ngFor=\"let cell of getVisibleCells(row.cells)\">\n      <ng2-smart-table-cell [cell]=\"cell\" [grid]=\"grid\" [row]=\"row\" [isNew]=\"false\" [mode]=\"mode\"\n        [editConfirm]=\"editConfirm\" [inputClass]=\"editInputClass\" [isInEditing]=\"row.isInEditing\">\n      </ng2-smart-table-cell>\n    </td>\n\n    <td *ngIf=\"row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel>\n    </td>\n\n    <td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\">\n      </ng2-st-tbody-custom>\n\n      <ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" [row]=\"row\"\n        [source]=\"source\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\"\n        (editRowSelect)=\"editRowSelect.emit($event)\">\n      </ng2-st-tbody-edit-delete>\n    </td>\n  </tr>\n</ng-container>\n\n<ng-container *ngIf=\"!grid.getSetting('infiniteScroll.display')\">\n  <tr *ngFor=\"let row of grid.getRows()\" (click)=\"userSelectRow.emit(row)\" (mouseover)=\"rowHover.emit(row)\"\n    class=\"ng2-smart-row\" [className]=\"rowClassFunction(row)\" [ngClass]=\"{selected: row.isSelected}\">\n    <td *ngIf=\"isMultiSelectVisible\" class=\"ng2-smart-actions ng2-smart-action-multiple-select\"\n      (click)=\"multipleSelectRow.emit(row)\">\n      <input type=\"checkbox\" class=\"form-check-input\" [ngModel]=\"row.isSelected\">\n    </td>\n    <td *ngIf=\"!row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\">\n      </ng2-st-tbody-custom>\n\n      <ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\"\n        (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\" (editRowSelect)=\"editRowSelect.emit($event)\" [row]=\"row\"\n        [source]=\"source\">\n      </ng2-st-tbody-edit-delete>\n    </td>\n    <td *ngIf=\"row.isInEditing && showActionColumnLeft\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\" (cancel)=\"cancel.emit($event)\">\n      </ng2-st-tbody-create-cancel>\n    </td>\n    <td *ngFor=\"let cell of getVisibleCells(row.cells)\">\n      <ng2-smart-table-cell [cell]=\"cell\" [grid]=\"grid\" [row]=\"row\" [isNew]=\"false\" [mode]=\"mode\"\n        [editConfirm]=\"editConfirm\" [inputClass]=\"editInputClass\" [isInEditing]=\"row.isInEditing\">\n      </ng2-smart-table-cell>\n    </td>\n\n    <td *ngIf=\"row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-create-cancel [grid]=\"grid\" [row]=\"row\" [editConfirm]=\"editConfirm\"></ng2-st-tbody-create-cancel>\n    </td>\n\n    <td *ngIf=\"!row.isInEditing && showActionColumnRight\" class=\"ng2-smart-actions\">\n      <ng2-st-tbody-custom [grid]=\"grid\" (custom)=\"custom.emit($event)\" [row]=\"row\" [source]=\"source\">\n      </ng2-st-tbody-custom>\n\n      <ng2-st-tbody-edit-delete [grid]=\"grid\" [deleteConfirm]=\"deleteConfirm\" [editConfirm]=\"editConfirm\" [row]=\"row\"\n        [source]=\"source\" (edit)=\"edit.emit(row)\" (delete)=\"delete.emit(row)\"\n        (editRowSelect)=\"editRowSelect.emit($event)\">\n      </ng2-st-tbody-edit-delete>\n    </td>\n  </tr>\n</ng-container>\n\n<tr *ngIf=\"grid.getRows().length == 0\">\n  <td [attr.colspan]=\"tableColumnsCount\">\n    {{ noDataMessage }}\n  </td>\n</tr>",
                     styles: [":host .ng2-smart-row.selected{background:rgba(0,0,0,.05)}:host .ng2-smart-row .ng2-smart-actions.ng2-smart-action-multiple-select{text-align:center}:host ::ng-deep ng2-st-tbody-create-cancel a:first-child,:host ::ng-deep ng2-st-tbody-edit-delete a:first-child{margin-right:.25rem}"]
                 },] }
     ];
@@ -1355,6 +1355,7 @@
                         common.CommonModule,
                         forms.FormsModule,
                         CellModule,
+                        scrolling.ScrollingModule
                     ],
                     declarations: __spread(TBODY_COMPONENTS),
                     exports: __spread(TBODY_COMPONENTS),
@@ -2011,7 +2012,7 @@
             return this.rows[this.rows.length - 1];
         };
         DataSet.prototype.findRowByData = function (data) {
-            return this.rows.find(function (row) { return row.getData() === data; });
+            return this.rows.find(function (row) { return lodash.isEqual(row.getData(), data); });
         };
         DataSet.prototype.deselectAll = function () {
             this.rows.forEach(function (row) {
@@ -2609,7 +2610,7 @@
             return _super.prototype.add.call(this, element);
         };
         LocalDataSource.prototype.remove = function (element) {
-            this.data = this.data.filter(function (el) { return el !== element; });
+            this.data = this.data.filter(function (el) { return !lodash.isEqual(el, element); });
             return _super.prototype.remove.call(this, element);
         };
         LocalDataSource.prototype.update = function (element, values) {
@@ -2622,7 +2623,7 @@
             });
         };
         LocalDataSource.prototype.find = function (element) {
-            var found = this.data.find(function (el) { return el === element; });
+            var found = this.data.find(function (el) { return lodash.isEqual(el, element); });
             if (found) {
                 return Promise.resolve(found);
             }
@@ -2880,11 +2881,67 @@
                     page: 1,
                     perPage: 10,
                 },
+                infiniteScroll: {
+                    display: false,
+                    itemSize: 10,
+                    class: 'ng2-smart-table-default-infinite-scroll',
+                },
                 rowClassFunction: function () { return ''; },
             };
             this.isAllSelected = false;
             this.destroyed$ = new rxjs.Subject();
         }
+        Ng2SmartTableComponent.prototype.ngAfterViewInit = function () {
+            if (this.grid.getSetting('infiniteScroll.display')) {
+                this.resizeMultiHeads();
+            }
+        };
+        Ng2SmartTableComponent.prototype.resizeMultiHeads = function () {
+            var _this = this;
+            setTimeout((function () {
+                var els = document.getElementsByClassName('ng2-smart-actions');
+                /* Let's divide the element list by 2, the  */
+                [].forEach.call(els, (function (el) {
+                    /* Search for the same element inside the same array */
+                    var currentClassName = el.className;
+                    var elementWidth = el.offsetWidth;
+                    [].forEach.call(els, (function (otherElement) {
+                        if (otherElement.className === el.className) {
+                            elementWidth = otherElement.offsetWidth;
+                        }
+                    }));
+                    el.width = elementWidth;
+                }).bind(_this));
+                els = document.getElementsByClassName('ng2-smart-th');
+                [].forEach.call(els, (function (el) {
+                    /* Search for the same element inside the same array */
+                    var currentClassName = el.className;
+                    var elementWidth = el.offsetWidth;
+                    [].forEach.call(els, (function (otherElement) {
+                        if (otherElement.className === el.className) {
+                            elementWidth = otherElement.offsetWidth;
+                        }
+                    }));
+                    el.width = elementWidth;
+                }).bind(_this));
+            }), 10);
+        };
+        Ng2SmartTableComponent.prototype.resetColumnSize = function () {
+            var els = document.getElementsByClassName('ng2-smart-actions');
+            [].forEach.call(els, (function (el) {
+                el.width = '';
+            }).bind(this));
+            els = document.getElementsByClassName('ng2-smart-th');
+            [].forEach.call(els, (function (el) {
+                el.width = '';
+            }).bind(this));
+        };
+        Ng2SmartTableComponent.prototype.onResize = function (event) {
+            if (this.grid.getSetting('infiniteScroll.display')) {
+                this.resetColumnSize();
+                this.resizeMultiHeads();
+            }
+        };
         Ng2SmartTableComponent.prototype.ngOnChanges = function (changes) {
             if (this.grid) {
                 if (changes['settings']) {
@@ -3075,8 +3132,8 @@
     Ng2SmartTableComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'ng2-smart-table',
-                    template: "<table [id]=\"tableId\" [ngClass]=\"tableClass\">\n\n  <thead ng2-st-thead *ngIf=\"!isHideHeader || !isHideSubHeader\"\n                      [grid]=\"grid\"\n                      [isAllSelected]=\"isAllSelected\"\n                      [source]=\"source\"\n                      [createConfirm]=\"createConfirm\"\n                      (create)=\"create.emit($event)\"\n                      (createCancel)=\"createCancel.emit($event)\"\n                      (selectAllRows)=\"onSelectAllRows($event)\"\n                      (sort)=\"sort($event)\"\n                      (filter)=\"filter($event)\">\n  </thead>\n\n  <tbody ng2-st-tbody [grid]=\"grid\"\n                      [source]=\"source\"\n                      [deleteConfirm]=\"deleteConfirm\"\n                      [editConfirm]=\"editConfirm\"\n                      [rowClassFunction]=\"rowClassFunction\"\n                      (edit)=\"edit.emit($event)\"\n                      (cancel)=\"editCancel.emit($event)\"\n                      (delete)=\"delete.emit($event)\"\n                      (custom)=\"custom.emit($event)\"\n                      (userSelectRow)=\"onUserSelectRow($event)\"\n                      (editRowSelect)=\"editRowSelect($event)\"\n                      (multipleSelectRow)=\"multipleSelectRow($event)\"\n                      (rowHover)=\"onRowHover($event)\">\n  </tbody>\n\n</table>\n\n<ng2-smart-table-pager *ngIf=\"isPagerDisplay\"\n                        [source]=\"source\"\n                        [perPageSelect]=\"perPageSelect\"\n                        (changePage)=\"changePage($event)\">\n</ng2-smart-table-pager>\n",
-                    styles: [":host{font-size:1rem}:host ::ng-deep *{box-sizing:border-box}:host ::ng-deep button,:host ::ng-deep input,:host ::ng-deep optgroup,:host ::ng-deep select,:host ::ng-deep textarea{color:inherit;font:inherit;margin:0}:host ::ng-deep table{line-height:1.5em;border-collapse:collapse;border-spacing:0;display:table;width:100%;max-width:100%;overflow:auto;word-break:normal;word-break:keep-all}:host ::ng-deep table tr th{font-weight:700}:host ::ng-deep table tr section{font-size:.75em;font-weight:700}:host ::ng-deep table tr td,:host ::ng-deep table tr th{font-size:.875em;margin:0;padding:.5em 1em}:host ::ng-deep a{color:#1e6bb8;text-decoration:none}:host ::ng-deep a:hover{text-decoration:underline}"]
+                    template: "  <table [id]=\"tableId\" [ngClass]=\"tableClass\">\n\n  <thead ng2-st-thead *ngIf=\"!isHideHeader || !isHideSubHeader\"\n                      [grid]=\"grid\"\n                      [isAllSelected]=\"isAllSelected\"\n                      [source]=\"source\"\n                      [createConfirm]=\"createConfirm\"\n                      (create)=\"create.emit($event)\"\n                      (createCancel)=\"createCancel.emit($event)\"\n                      (selectAllRows)=\"onSelectAllRows($event)\"\n                      (sort)=\"sort($event)\"\n                      (filter)=\"filter($event)\">\n  </thead>\n\n    <tbody *ngIf=\"!grid.getSetting('infiniteScroll.display')\" ng2-st-tbody [grid]=\"grid\"\n           [source]=\"source\"\n           [deleteConfirm]=\"deleteConfirm\"\n           [editConfirm]=\"editConfirm\"\n           [rowClassFunction]=\"rowClassFunction\"\n           (edit)=\"edit.emit($event)\"\n           (delete)=\"delete.emit($event)\"\n           (custom)=\"custom.emit($event)\"\n           (userSelectRow)=\"onUserSelectRow($event)\"\n           (editRowSelect)=\"editRowSelect($event)\"\n           (multipleSelectRow)=\"multipleSelectRow($event)\"\n           (rowHover)=\"onRowHover($event)\">\n    </tbody>\n\n  </table>\n\n  <cdk-virtual-scroll-viewport [itemSize]=\"grid.getSetting('infiniteScroll.itemSize')\" [className]=\"grid.getSetting('infiniteScroll.class')\" *ngIf=\"grid.getSetting('infiniteScroll.display')\">\n    <table [id]=\"tableId\" [ngClass]=\"tableClass\">\n      <thead ng2-st-thead *ngIf=\"!isHideHeader || !isHideSubHeader\"\n             [grid]=\"grid\"\n             [isAllSelected]=\"isAllSelected\"\n             [source]=\"source\"\n             [createConfirm]=\"createConfirm\"\n             (create)=\"create.emit($event)\"\n             (selectAllRows)=\"onSelectAllRows($event)\"\n             (sort)=\"sort($event)\"\n             (filter)=\"filter($event)\" class=\"ng2-smart-table-head-hidden\">\n      </thead>\n\n\n      <tbody ng2-st-tbody [grid]=\"grid\"\n                      [source]=\"source\"\n                      [deleteConfirm]=\"deleteConfirm\"\n                      [editConfirm]=\"editConfirm\"\n                      [rowClassFunction]=\"rowClassFunction\"\n                      (edit)=\"edit.emit($event)\"\n                      (cancel)=\"editCancel.emit($event)\"\n                      (delete)=\"delete.emit($event)\"\n                      (custom)=\"custom.emit($event)\"\n                      (userSelectRow)=\"onUserSelectRow($event)\"\n                      (editRowSelect)=\"editRowSelect($event)\"\n                      (multipleSelectRow)=\"multipleSelectRow($event)\"\n                      (rowHover)=\"onRowHover($event)\">\n    </tbody>\n    </table>\n  </cdk-virtual-scroll-viewport>\n\n\n<ng2-smart-table-pager *ngIf=\"isPagerDisplay\"\n                        [source]=\"source\"\n                        [perPageSelect]=\"perPageSelect\"\n                        (changePage)=\"changePage($event)\">\n</ng2-smart-table-pager>\n",
+                    styles: [":host{font-size:1rem}:host ::ng-deep *{box-sizing:border-box}:host ::ng-deep button,:host ::ng-deep input,:host ::ng-deep optgroup,:host ::ng-deep select,:host ::ng-deep textarea{color:inherit;font:inherit;margin:0}:host ::ng-deep .ng2-smart-table-default-infinite-scroll{overflow-y:scroll;min-height:30vh}:host ::ng-deep .ng2-smart-table-head-hidden{visibility:collapse}:host ::ng-deep .ng2-smart-table-head-hidden tr,:host ::ng-deep .ng2-smart-table-head-hidden tr th{height:0;line-height:0}:host ::ng-deep table{line-height:1.5em;border-collapse:collapse;border-spacing:0;display:table;width:100%;max-width:100%;overflow:auto;word-break:normal;word-break:keep-all}:host ::ng-deep table tr th{font-weight:700}:host ::ng-deep table tr section{font-size:.75em;font-weight:700}:host ::ng-deep table tr td,:host ::ng-deep table tr th{font-size:.875em;margin:0;padding:.5em 1em}:host ::ng-deep a{color:#1e6bb8;text-decoration:none}:host ::ng-deep a:hover{text-decoration:underline}"]
                 },] }
     ];
     Ng2SmartTableComponent.propDecorators = {
@@ -3095,7 +3152,8 @@
         deleteConfirm: [{ type: core.Output }],
         editConfirm: [{ type: core.Output }],
         createConfirm: [{ type: core.Output }],
-        rowHover: [{ type: core.Output }]
+        rowHover: [{ type: core.Output }],
+        onResize: [{ type: core.HostListener, args: ['window:resize', ['$event'],] }]
     };
 
     var Ng2SmartTableModule = /** @class */ (function () {
@@ -3114,6 +3172,7 @@
                         PagerModule,
                         TBodyModule,
                         THeadModule,
+                        scrolling.ScrollingModule
                     ],
                     declarations: [
                         Ng2SmartTableComponent,

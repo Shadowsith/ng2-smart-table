@@ -1,6 +1,6 @@
 import { DataSource } from '../data-source';
 export declare class LocalDataSource extends DataSource {
-    protected data: Array<any>;
+    data: Array<any>;
     protected filteredAndSorted: Array<any>;
     protected sortConf: Array<any>;
     protected filterConf: any;

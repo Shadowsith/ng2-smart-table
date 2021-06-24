@@ -38,6 +38,8 @@ export interface Ng2SmartTableSettings {
      * Pager settings
      */
     pager?: Ng2SmartTablePager;
+    /** infiniteScroll settings */
+    infiniteScroll?: Ng2SmartTableInfiniteScroll;
     /** Handle css class for each row in the table
      *
      */
@@ -418,6 +420,23 @@ export interface Ng2SmartTablePager {
      * @default 10
      */
     perPage?: number;
+}
+export interface Ng2SmartTableInfiniteScroll {
+    /**
+     * Whether to display infinite scroll or not
+     * @default false
+    */
+    display?: boolean;
+    /**
+     * viewed item size
+     * @default 10
+     */
+    itemSize?: number;
+    /**
+     * custom css class
+     * @default 'ng2-smart-table-default-infinite-scroll'
+     */
+    class?: string;
 }
 export interface Ng2SmartTableUserRowSelectEvent {
     data: any;
